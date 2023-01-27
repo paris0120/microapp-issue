@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="issue">
+      <h2 data-cy="issueDetailsHeading"><span microappTranslate="issueServerApp.issueServerIssue.detail.title">Issue</span></h2>
+
+      <hr />
+
+      <microapp-alert-error></microapp-alert-error>
+
+      <microapp-alert></microapp-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span microappTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ issue.id }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.username">Username</span></dt>
+        <dd>
+          <span>{{ issue.username }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ issue.firstName }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ issue.lastName }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.displayedUsername">Displayed Username</span></dt>
+        <dd>
+          <span>{{ issue.displayedUsername }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issueTitle">Issue Title</span></dt>
+        <dd>
+          <span>{{ issue.issueTitle }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issueContent">Issue Content</span></dt>
+        <dd>
+          <span>{{ issue.issueContent }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issueType">Issue Type</span></dt>
+        <dd>
+          <span>{{ issue.issueType }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issueWorkflowStatus">Issue Workflow Status</span></dt>
+        <dd>
+          <span>{{ issue.issueWorkflowStatus }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issueWorkflowStatusKey">Issue Workflow Status Key</span></dt>
+        <dd>
+          <span>{{ issue.issueWorkflowStatusKey }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issuePriorityLevel">Issue Priority Level</span></dt>
+        <dd>
+          <span>{{ issue.issuePriorityLevel }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.issueUuid">Issue Uuid</span></dt>
+        <dd>
+          <span>{{ issue.issueUuid }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.created">Created</span></dt>
+        <dd>
+          <span>{{ issue.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.modified">Modified</span></dt>
+        <dd>
+          <span>{{ issue.modified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.deleted">Deleted</span></dt>
+        <dd>
+          <span>{{ issue.deleted | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssue.closed">Closed</span></dt>
+        <dd>
+          <span>{{ issue.closed | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span microappTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/issueserver/issue', issue.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span microappTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,171 @@
+<div>
+  <h2 id="page-heading" data-cy="IssueAssignmentHeading">
+    <span microappTranslate="issueServerApp.issueServerIssueAssignment.home.title">Issue Assignments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span microappTranslate="issueServerApp.issueServerIssueAssignment.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-issue-assignment"
+        [routerLink]="['/issueserver/issue-assignment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span microappTranslate="issueServerApp.issueServerIssueAssignment.home.createLabel"> Create a new Issue Assignment </span>
+      </button>
+    </div>
+  </h2>
+
+  <microapp-alert-error></microapp-alert-error>
+
+  <microapp-alert></microapp-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="issueAssignments?.length === 0">
+    <span microappTranslate="issueServerApp.issueServerIssueAssignment.home.notFound">No Issue Assignments found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="issueAssignments && issueAssignments.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr microappSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" microappSortBy="id">
+            <div class="d-flex">
+              <span microappTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="issueId">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.issueId">Issue Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="issueUuid">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.issueUuid">Issue Uuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="username">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.username">Username</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="issueAssignmentDisplayedUsername">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.issueAssignmentDisplayedUsername"
+                >Issue Assignment Displayed Username</span
+              >
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="issueRole">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.issueRole">Issue Role</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="displayedIssueRole">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.displayedIssueRole">Displayed Issue Role</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="created">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.created">Created</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="modified">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.modified">Modified</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="accepted">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.accepted">Accepted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="deleted">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueAssignment.deleted">Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let issueAssignment of issueAssignments; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/issueserver/issue-assignment', issueAssignment.id, 'view']">{{ issueAssignment.id }}</a>
+          </td>
+          <td>{{ issueAssignment.issueId }}</td>
+          <td>{{ issueAssignment.issueUuid }}</td>
+          <td>{{ issueAssignment.username }}</td>
+          <td>{{ issueAssignment.issueAssignmentDisplayedUsername }}</td>
+          <td>{{ issueAssignment.issueRole }}</td>
+          <td>{{ issueAssignment.displayedIssueRole }}</td>
+          <td>{{ issueAssignment.created | formatMediumDatetime }}</td>
+          <td>{{ issueAssignment.modified | formatMediumDatetime }}</td>
+          <td>{{ issueAssignment.accepted | formatMediumDatetime }}</td>
+          <td>{{ issueAssignment.deleted | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/issueserver/issue-assignment', issueAssignment.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" microappTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/issueserver/issue-assignment', issueAssignment.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" microappTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(issueAssignment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" microappTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="issueAssignments && issueAssignments.length > 0">
+    <div class="d-flex justify-content-center">
+      <microapp-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></microapp-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

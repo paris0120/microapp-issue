@@ -1,0 +1,95 @@
+<div>
+  <h2 id="page-heading" data-cy="IssueDepartmentHeading">
+    <span microappTranslate="issueServerApp.issueServerIssueDepartment.home.title">Issue Departments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span microappTranslate="issueServerApp.issueServerIssueDepartment.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-issue-department"
+        [routerLink]="['/issueserver/issue-department/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span microappTranslate="issueServerApp.issueServerIssueDepartment.home.createLabel"> Create a new Issue Department </span>
+      </button>
+    </div>
+  </h2>
+
+  <microapp-alert-error></microapp-alert-error>
+
+  <microapp-alert></microapp-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="issueDepartments?.length === 0">
+    <span microappTranslate="issueServerApp.issueServerIssueDepartment.home.notFound">No Issue Departments found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="issueDepartments && issueDepartments.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr microappSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" microappSortBy="id">
+            <div class="d-flex">
+              <span microappTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="issueDepartmentKey">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueDepartment.issueDepartmentKey">Issue Department Key</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" microappSortBy="issueDepartment">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueDepartment.issueDepartment">Issue Department</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let issueDepartment of issueDepartments; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/issueserver/issue-department', issueDepartment.id, 'view']">{{ issueDepartment.id }}</a>
+          </td>
+          <td>{{ issueDepartment.issueDepartmentKey }}</td>
+          <td>{{ issueDepartment.issueDepartment }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/issueserver/issue-department', issueDepartment.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" microappTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/issueserver/issue-department', issueDepartment.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" microappTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(issueDepartment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" microappTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

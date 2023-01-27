@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="microapp-issue-priority-heading"
+        data-cy="IssuePriorityCreateUpdateHeading"
+        microappTranslate="issueServerApp.issueServerIssuePriority.home.createOrEditLabel"
+      >
+        Create or edit a Issue Priority
+      </h2>
+
+      <div>
+        <microapp-alert-error></microapp-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" microappTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" microappTranslate="issueServerApp.issueServerIssuePriority.issuePriority" for="field_issuePriority"
+            >Issue Priority</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="issuePriority"
+            id="field_issuePriority"
+            data-cy="issuePriority"
+            formControlName="issuePriority"
+          />
+          <div
+            *ngIf="
+              editForm.get('issuePriority')!.invalid && (editForm.get('issuePriority')!.dirty || editForm.get('issuePriority')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('issuePriority')?.errors?.required"
+              microappTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            microappTranslate="issueServerApp.issueServerIssuePriority.issuePriorityLevel"
+            for="field_issuePriorityLevel"
+            >Issue Priority Level</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="issuePriorityLevel"
+            id="field_issuePriorityLevel"
+            data-cy="issuePriorityLevel"
+            formControlName="issuePriorityLevel"
+          />
+          <div
+            *ngIf="
+              editForm.get('issuePriorityLevel')!.invalid &&
+              (editForm.get('issuePriorityLevel')!.dirty || editForm.get('issuePriorityLevel')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('issuePriorityLevel')?.errors?.required"
+              microappTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('issuePriorityLevel')?.errors?.number"
+              microappTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span microappTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span microappTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

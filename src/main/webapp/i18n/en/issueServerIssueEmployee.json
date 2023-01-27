@@ -1,0 +1,38 @@
+{
+  "issueServerApp": {
+    "issueServerIssueEmployee": {
+      "home": {
+        "title": "Issue Employees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Issue Employee",
+        "createOrEditLabel": "Create or edit a Issue Employee",
+        "notFound": "No Issue Employees found"
+      },
+      "created": "A new Issue Employee is created with identifier {{ param }}",
+      "updated": "A Issue Employee is updated with identifier {{ param }}",
+      "deleted": "A Issue Employee is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Issue Employee {{ id }}?"
+      },
+      "detail": {
+        "title": "Issue Employee"
+      },
+      "id": "ID",
+      "username": "Username",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "displayName": "Display Name",
+      "issueDepartment": "Issue Department",
+      "defaultIssueRoleKey": "Default Issue Role Key",
+      "defaultDisplayedIssueRole": "Default Displayed Issue Role",
+      "isAvailable": "Is Available",
+      "inOfficeFrom": "In Office From",
+      "officeHourFrom": "Office Hour From",
+      "officeHourTo": "Office Hour To",
+      "timezone": "Timezone",
+      "created": "Created",
+      "modified": "Modified",
+      "deleted": "Deleted"
+    }
+  }
+}

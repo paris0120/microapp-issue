@@ -1,0 +1,25 @@
+{
+  "issueServerApp": {
+    "issueServerIssueRole": {
+      "home": {
+        "title": "Issue Roles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Issue Role",
+        "createOrEditLabel": "Create or edit a Issue Role",
+        "notFound": "No Issue Roles found"
+      },
+      "created": "A new Issue Role is created with identifier {{ param }}",
+      "updated": "A Issue Role is updated with identifier {{ param }}",
+      "deleted": "A Issue Role is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Issue Role {{ id }}?"
+      },
+      "detail": {
+        "title": "Issue Role"
+      },
+      "id": "ID",
+      "issueRoleKey": "Issue Role Key",
+      "issueRole": "Issue Role"
+    }
+  }
+}

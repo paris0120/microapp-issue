@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="issueEmployee">
+      <h2 data-cy="issueEmployeeDetailsHeading">
+        <span microappTranslate="issueServerApp.issueServerIssueEmployee.detail.title">Issue Employee</span>
+      </h2>
+
+      <hr />
+
+      <microapp-alert-error></microapp-alert-error>
+
+      <microapp-alert></microapp-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span microappTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ issueEmployee.id }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.username">Username</span></dt>
+        <dd>
+          <span>{{ issueEmployee.username }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ issueEmployee.firstName }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ issueEmployee.lastName }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.displayName">Display Name</span></dt>
+        <dd>
+          <span>{{ issueEmployee.displayName }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.issueDepartment">Issue Department</span></dt>
+        <dd>
+          <span>{{ issueEmployee.issueDepartment }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.defaultIssueRoleKey">Default Issue Role Key</span></dt>
+        <dd>
+          <span>{{ issueEmployee.defaultIssueRoleKey }}</span>
+        </dd>
+        <dt>
+          <span microappTranslate="issueServerApp.issueServerIssueEmployee.defaultDisplayedIssueRole">Default Displayed Issue Role</span>
+        </dt>
+        <dd>
+          <span>{{ issueEmployee.defaultDisplayedIssueRole }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.isAvailable">Is Available</span></dt>
+        <dd>
+          <span>{{ issueEmployee.isAvailable }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.inOfficeFrom">In Office From</span></dt>
+        <dd>
+          <span>{{ issueEmployee.inOfficeFrom | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.officeHourFrom">Office Hour From</span></dt>
+        <dd>
+          <span>{{ issueEmployee.officeHourFrom | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.officeHourTo">Office Hour To</span></dt>
+        <dd>
+          <span>{{ issueEmployee.officeHourTo | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.timezone">Timezone</span></dt>
+        <dd>
+          <span>{{ issueEmployee.timezone }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.created">Created</span></dt>
+        <dd>
+          <span>{{ issueEmployee.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.modified">Modified</span></dt>
+        <dd>
+          <span>{{ issueEmployee.modified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueEmployee.deleted">Deleted</span></dt>
+        <dd>
+          <span>{{ issueEmployee.deleted | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span microappTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/issueserver/issue-employee', issueEmployee.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span microappTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

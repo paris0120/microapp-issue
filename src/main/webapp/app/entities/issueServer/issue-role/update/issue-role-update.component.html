@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="microapp-issue-role-heading"
+        data-cy="IssueRoleCreateUpdateHeading"
+        microappTranslate="issueServerApp.issueServerIssueRole.home.createOrEditLabel"
+      >
+        Create or edit a Issue Role
+      </h2>
+
+      <div>
+        <microapp-alert-error></microapp-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" microappTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" microappTranslate="issueServerApp.issueServerIssueRole.issueRoleKey" for="field_issueRoleKey"
+            >Issue Role Key</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="issueRoleKey"
+            id="field_issueRoleKey"
+            data-cy="issueRoleKey"
+            formControlName="issueRoleKey"
+          />
+          <div
+            *ngIf="editForm.get('issueRoleKey')!.invalid && (editForm.get('issueRoleKey')!.dirty || editForm.get('issueRoleKey')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('issueRoleKey')?.errors?.required"
+              microappTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" microappTranslate="issueServerApp.issueServerIssueRole.issueRole" for="field_issueRole"
+            >Issue Role</label
+          >
+          <input type="text" class="form-control" name="issueRole" id="field_issueRole" data-cy="issueRole" formControlName="issueRole" />
+          <div *ngIf="editForm.get('issueRole')!.invalid && (editForm.get('issueRole')!.dirty || editForm.get('issueRole')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('issueRole')?.errors?.required"
+              microappTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span microappTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span microappTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

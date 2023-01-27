@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="issueAssignment">
+      <h2 data-cy="issueAssignmentDetailsHeading">
+        <span microappTranslate="issueServerApp.issueServerIssueAssignment.detail.title">Issue Assignment</span>
+      </h2>
+
+      <hr />
+
+      <microapp-alert-error></microapp-alert-error>
+
+      <microapp-alert></microapp-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span microappTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ issueAssignment.id }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.issueId">Issue Id</span></dt>
+        <dd>
+          <span>{{ issueAssignment.issueId }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.issueUuid">Issue Uuid</span></dt>
+        <dd>
+          <span>{{ issueAssignment.issueUuid }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.username">Username</span></dt>
+        <dd>
+          <span>{{ issueAssignment.username }}</span>
+        </dd>
+        <dt>
+          <span microappTranslate="issueServerApp.issueServerIssueAssignment.issueAssignmentDisplayedUsername"
+            >Issue Assignment Displayed Username</span
+          >
+        </dt>
+        <dd>
+          <span>{{ issueAssignment.issueAssignmentDisplayedUsername }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.issueRole">Issue Role</span></dt>
+        <dd>
+          <span>{{ issueAssignment.issueRole }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.displayedIssueRole">Displayed Issue Role</span></dt>
+        <dd>
+          <span>{{ issueAssignment.displayedIssueRole }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.created">Created</span></dt>
+        <dd>
+          <span>{{ issueAssignment.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.modified">Modified</span></dt>
+        <dd>
+          <span>{{ issueAssignment.modified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.accepted">Accepted</span></dt>
+        <dd>
+          <span>{{ issueAssignment.accepted | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueAssignment.deleted">Deleted</span></dt>
+        <dd>
+          <span>{{ issueAssignment.deleted | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span microappTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/issueserver/issue-assignment', issueAssignment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span microappTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "applications": ["issueServer"],
+  "changelogDate": "20230127051345",
+  "clientRootFolder": "issueServer",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "issue_priority",
+  "fields": [
+    {
+      "fieldName": "issuePriority",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "issuePriorityLevel",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "issueServer",
+  "name": "IssuePriority",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

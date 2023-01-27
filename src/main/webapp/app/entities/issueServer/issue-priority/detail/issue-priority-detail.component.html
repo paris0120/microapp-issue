@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="issuePriority">
+      <h2 data-cy="issuePriorityDetailsHeading">
+        <span microappTranslate="issueServerApp.issueServerIssuePriority.detail.title">Issue Priority</span>
+      </h2>
+
+      <hr />
+
+      <microapp-alert-error></microapp-alert-error>
+
+      <microapp-alert></microapp-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span microappTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ issuePriority.id }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssuePriority.issuePriority">Issue Priority</span></dt>
+        <dd>
+          <span>{{ issuePriority.issuePriority }}</span>
+        </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssuePriority.issuePriorityLevel">Issue Priority Level</span></dt>
+        <dd>
+          <span>{{ issuePriority.issuePriorityLevel }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span microappTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/issueserver/issue-priority', issuePriority.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span microappTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
