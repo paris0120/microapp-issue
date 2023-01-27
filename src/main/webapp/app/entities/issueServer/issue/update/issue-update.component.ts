@@ -10,6 +10,9 @@ import { IssueService } from '../service/issue.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
+import { Account } from '../../../../core/auth/account.model';
+import { AccountService } from '../../../../core/auth/account.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'microapp-issue-update',
@@ -18,24 +21,32 @@ import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 export class IssueUpdateComponent implements OnInit {
   isSaving = false;
   issue: IIssue | null = null;
-
+  account: Account | null = null;
   editForm: IssueFormGroup = this.issueFormService.createIssueFormGroup();
-
+  issueType: string | null = null;
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected issueService: IssueService,
     protected issueFormService: IssueFormService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected accountService: AccountService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    let issueType: string;
+    this.route.queryParams.subscribe(params => {
+      this.editForm.controls['issueType'] = new FormControl(params.issueType);
+    });
+
     this.activatedRoute.data.subscribe(({ issue }) => {
       this.issue = issue;
       if (issue) {
         this.updateForm(issue);
       }
     });
+    this.accountService.identity().subscribe(account => (this.account = account));
   }
 
   byteSize(base64String: string): string {

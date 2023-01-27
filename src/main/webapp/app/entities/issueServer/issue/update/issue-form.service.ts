@@ -4,6 +4,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import dayjs from 'dayjs/esm';
 import { DATE_TIME_FORMAT } from 'app/config/input.constants';
 import { IIssue, NewIssue } from '../issue.model';
+import { Account } from '../../../../core/auth/account.model';
+import { AccountService } from '../../../../core/auth/account.service';
+import { LoginService } from '../../../../login/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * A partial Type with required key is used as form input.
@@ -60,6 +64,10 @@ export class IssueFormService {
       ...this.getFormDefaults(),
       ...issue,
     });
+    if (issueRawValue.displayedUsername == null) issueRawValue.displayedUsername = 'name';
+    if (issueRawValue.issuePriorityLevel == null) issueRawValue.issuePriorityLevel = 0;
+    if (issueRawValue.issueWorkflowStatus == null) issueRawValue.issueWorkflowStatus = 'Open';
+    if (issueRawValue.issueWorkflowStatusKey == null) issueRawValue.issueWorkflowStatusKey = 'OPEN';
     return new FormGroup<IssueFormGroupContent>({
       id: new FormControl(
         { value: issueRawValue.id, disabled: true },

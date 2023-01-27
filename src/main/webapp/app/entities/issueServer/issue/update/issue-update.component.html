@@ -65,6 +65,7 @@
             >Issue Title</label
           >
           <input
+            pInputText
             type="text"
             class="form-control"
             name="issueTitle"
@@ -95,6 +96,16 @@
           <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issueContent" for="field_issueContent"
             >Issue Content</label
           >
+
+          <p-editor
+            class="form-control"
+            name="issueContent"
+            id="field_issueContenft"
+            data-cy="issueContent"
+            formControlName="issueContent"
+            [style]="{ height: '320px' }"
+          ></p-editor>
+
           <textarea
             class="form-control"
             name="issueContent"
@@ -102,6 +113,7 @@
             data-cy="issueContent"
             formControlName="issueContent"
           ></textarea>
+
           <div
             *ngIf="editForm.get('issueContent')!.invalid && (editForm.get('issueContent')!.dirty || editForm.get('issueContent')!.touched)"
           >

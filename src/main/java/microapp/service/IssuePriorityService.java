@@ -1,6 +1,9 @@
 package microapp.service;
 
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import javax.annotation.PostConstruct;
 import microapp.domain.IssuePriority;
 import microapp.repository.IssuePriorityRepository;
 import org.slf4j.Logger;
@@ -17,12 +20,38 @@ import reactor.core.publisher.Mono;
 @Transactional
 public class IssuePriorityService {
 
+    private SortedMap<Integer, String> issuePriority;
+
     private final Logger log = LoggerFactory.getLogger(IssuePriorityService.class);
 
     private final IssuePriorityRepository issuePriorityRepository;
 
     public IssuePriorityService(IssuePriorityRepository issuePriorityRepository) {
         this.issuePriorityRepository = issuePriorityRepository;
+    }
+
+    /**
+     * Load priority information to cache.
+     */
+    @PostConstruct
+    public void refreshIssuePriority() {
+        issuePriority = new TreeMap<>();
+        issuePriorityRepository
+            .findAll()
+            .map(issuePriority -> {
+                this.issuePriority.put(issuePriority.getIssuePriorityLevel(), issuePriority.getIssuePriority());
+                return issuePriority;
+            });
+        log.info("Priority updated.");
+    }
+
+    /**
+     * Get the priority name based on its level.
+     * @param priorityLevel the level of the priority priority.
+     * @return the priority name
+     */
+    public String getIssuePriority(int priorityLevel) {
+        return issuePriority.get(priorityLevel);
     }
 
     /**

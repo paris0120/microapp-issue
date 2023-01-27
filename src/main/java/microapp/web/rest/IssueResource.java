@@ -113,7 +113,7 @@ public class IssueResource {
                 }
 
                 return issueService
-                    .update(issueDTO)
+                    .updateIssueContent(issueDTO)
                     .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
                     .map(result ->
                         ResponseEntity
@@ -155,7 +155,7 @@ public class IssueResource {
                     return Mono.error(new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound"));
                 }
 
-                Mono<IssueDTO> result = issueService.partialUpdate(issueDTO);
+                Mono<IssueDTO> result = issueService.updateIssueContent(issueDTO);
 
                 return result
                     .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)))
