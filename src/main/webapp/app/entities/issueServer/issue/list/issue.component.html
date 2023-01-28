@@ -28,6 +28,28 @@
     <span microappTranslate="issueServerApp.issueServerIssue.home.notFound">No Issues found</span>
   </div>
 
+  <!--  <p-table *ngIf="issues && issues.length>0" [value]="issues" [tableStyle]="{'min-width': '60rem'}">-->
+  <!--    <ng-template pTemplate="caption">-->
+  <!--      <div class="flex align-items-center justify-content-between">-->
+  <!--        My Tickets-->
+  <!--        <p-button icon="pi pi-refresh"></p-button>-->
+  <!--      </div>-->
+  <!--    </ng-template>-->
+  <!--    <ng-template pTemplate="header">-->
+  <!--    </ng-template>-->
+  <!--    <ng-template pTemplate="body" let-issue>-->
+  <!--      <tr>-->
+  <!--        <td>{{issue.title}}</td>-->
+  <!--        <td><span [class]="'product-badge status-' + issue.issueTypeKey.toLowerCase()">{{issue.issueTypeKey}}</span></td>-->
+  <!--      </tr>-->
+  <!--    </ng-template>-->
+  <!--&lt;!&ndash;    <ng-template pTemplate="summary">&ndash;&gt;-->
+  <!--&lt;!&ndash;      <div class="flex align-items-center justify-content-between">&ndash;&gt;-->
+  <!--&lt;!&ndash;        In total there are {{products ? products.length : 0 }} products.&ndash;&gt;-->
+  <!--&lt;!&ndash;      </div>&ndash;&gt;-->
+  <!--&lt;!&ndash;    </ng-template>&ndash;&gt;-->
+  <!--  </p-table>-->
+
   <div class="table-responsive table-entities" id="entities" *ngIf="issues && issues.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>

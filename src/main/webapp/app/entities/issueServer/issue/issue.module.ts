@@ -7,9 +7,11 @@ import { IssueDeleteDialogComponent } from './delete/issue-delete-dialog.compone
 import { IssueRoutingModule } from './route/issue-routing.module';
 import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-  imports: [SharedModule, IssueRoutingModule, EditorModule, RadioButtonModule],
+  imports: [SharedModule, IssueRoutingModule, EditorModule, RadioButtonModule, TableModule, ButtonModule],
   declarations: [IssueComponent, IssueDetailComponent, IssueUpdateComponent, IssueDeleteDialogComponent],
 })
 export class IssueServerIssueModule {}
