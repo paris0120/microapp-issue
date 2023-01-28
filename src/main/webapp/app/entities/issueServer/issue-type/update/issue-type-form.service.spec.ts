@@ -23,6 +23,7 @@ describe('IssueType Form Service', () => {
             issueTypeKey: expect.any(Object),
             issueTypeWeight: expect.any(Object),
             issueType: expect.any(Object),
+            isActive: expect.any(Object),
           })
         );
       });
@@ -36,6 +37,7 @@ describe('IssueType Form Service', () => {
             issueTypeKey: expect.any(Object),
             issueTypeWeight: expect.any(Object),
             issueType: expect.any(Object),
+            isActive: expect.any(Object),
           })
         );
       });

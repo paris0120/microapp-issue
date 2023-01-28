@@ -30,10 +30,18 @@ public class IssuePriorityService {
         this.issuePriorityRepository = issuePriorityRepository;
     }
 
+    public SortedMap<Integer, String> getIssuePriority() {
+        if (issuePriority == null) refreshIssuePriority();
+        return issuePriority;
+    }
+
+    public void setIssuePriority(SortedMap<Integer, String> issuePriority) {
+        this.issuePriority = issuePriority;
+    }
+
     /**
      * Load priority information to cache.
      */
-    @PostConstruct
     public void refreshIssuePriority() {
         issuePriority = new TreeMap<>();
         issuePriorityRepository

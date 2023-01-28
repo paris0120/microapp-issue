@@ -56,6 +56,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" microappSortBy="isActive">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueType.isActive">Is Active</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -67,6 +73,7 @@
           <td>{{ issueType.issueTypeKey }}</td>
           <td>{{ issueType.issueTypeWeight }}</td>
           <td>{{ issueType.issueType }}</td>
+          <td>{{ issueType.isActive }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button

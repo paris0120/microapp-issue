@@ -5,26 +5,30 @@ export const sampleWithRequiredData: IIssueType = {
   issueTypeKey: 'bypassing white',
   issueTypeWeight: 75450,
   issueType: 'client-server Tools Dynamic',
+  isActive: false,
 };
 
 export const sampleWithPartialData: IIssueType = {
-  id: 45213,
-  issueTypeKey: 'Loan',
-  issueTypeWeight: 16354,
-  issueType: 'Metal',
+  id: 3341,
+  issueTypeKey: 'online yellow',
+  issueTypeWeight: 46341,
+  issueType: 'Dynamic payment overriding',
+  isActive: true,
 };
 
 export const sampleWithFullData: IIssueType = {
-  id: 68214,
-  issueTypeKey: 'invoice deposit Stand-alone',
-  issueTypeWeight: 63643,
-  issueType: 'Hat Keyboard data-warehouse',
+  id: 63643,
+  issueTypeKey: 'Hat Keyboard data-warehouse',
+  issueTypeWeight: 28225,
+  issueType: 'Identity client-driven hacking',
+  isActive: false,
 };
 
 export const sampleWithNewData: NewIssueType = {
-  issueTypeKey: 'programming',
-  issueTypeWeight: 90660,
-  issueType: 'Cheese',
+  issueTypeKey: 'Fish Investor',
+  issueTypeWeight: 83568,
+  issueType: 'sky',
+  isActive: false,
   id: null,
 };
 

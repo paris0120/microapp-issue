@@ -74,9 +74,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" microappSortBy="issueType">
+          <th scope="col" microappSortBy="issueTypeKey">
             <div class="d-flex">
-              <span microappTranslate="issueServerApp.issueServerIssue.issueType">Issue Type</span>
+              <span microappTranslate="issueServerApp.issueServerIssue.issueTypeKey">Issue Type Key</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -142,7 +142,7 @@
           <td>{{ issue.displayedUsername }}</td>
           <td>{{ issue.issueTitle }}</td>
           <td>{{ issue.issueContent }}</td>
-          <td>{{ issue.issueType }}</td>
+          <td>{{ issue.issueTypeKey }}</td>
           <td>{{ issue.issueWorkflowStatus }}</td>
           <td>{{ issue.issueWorkflowStatusKey }}</td>
           <td>{{ issue.issuePriorityLevel }}</td>

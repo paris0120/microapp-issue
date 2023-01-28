@@ -17,7 +17,7 @@ public class IssueSqlHelper {
         columns.add(Column.aliased("displayed_username", table, columnPrefix + "_displayed_username"));
         columns.add(Column.aliased("issue_title", table, columnPrefix + "_issue_title"));
         columns.add(Column.aliased("issue_content", table, columnPrefix + "_issue_content"));
-        columns.add(Column.aliased("issue_type", table, columnPrefix + "_issue_type"));
+        columns.add(Column.aliased("issue_type_key", table, columnPrefix + "_issue_type_key"));
         columns.add(Column.aliased("issue_workflow_status", table, columnPrefix + "_issue_workflow_status"));
         columns.add(Column.aliased("issue_workflow_status_key", table, columnPrefix + "_issue_workflow_status_key"));
         columns.add(Column.aliased("issue_priority_level", table, columnPrefix + "_issue_priority_level"));

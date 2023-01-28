@@ -1,6 +1,7 @@
 package microapp.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import microapp.domain.IssueType;
@@ -31,13 +32,20 @@ public class IssueMenuService {
         MenuItem item = new MenuItem();
         item.label = "MY Issues";
         issueMenu.add(item);
-        item = new MenuItem();
-        item.label = "New Issue";
+        final MenuItem newitem = new MenuItem();
+        newitem.label = "New Issue";
+        newitem.items = new ArrayList<>();
         issueMenu.add(item);
-        for (IssueType type : issueTypeService.issueTypes) {
-            MenuItem typeItem = new MenuItem();
-            typeItem.label = type.getIssueType();
-            typeItem.url = type.getIssueTypeKey();
-        }
+        issueTypeService
+            .getIssueTypes()
+            .collectList()
+            .subscribe(types -> {
+                for (IssueType type : types) {
+                    MenuItem typeItem = new MenuItem();
+                    typeItem.label = type.getIssueType();
+                    typeItem.url = type.getIssueTypeKey();
+                    newitem.items.add(typeItem);
+                }
+            });
     }
 }

@@ -12,8 +12,9 @@ public class IssueTypeSqlHelper {
         List<Expression> columns = new ArrayList<>();
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
         columns.add(Column.aliased("issue_type_key", table, columnPrefix + "_issue_type_key"));
+        columns.add(Column.aliased("issue_type_weight", table, columnPrefix + "_issue_type_weight"));
         columns.add(Column.aliased("issue_type", table, columnPrefix + "_issue_type"));
-
+        columns.add(Column.aliased("is_active", table, columnPrefix + "_is_active"));
         return columns;
     }
 }

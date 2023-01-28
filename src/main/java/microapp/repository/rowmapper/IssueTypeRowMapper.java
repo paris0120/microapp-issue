@@ -26,7 +26,9 @@ public class IssueTypeRowMapper implements BiFunction<Row, String, IssueType> {
         IssueType entity = new IssueType();
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setIssueTypeKey(converter.fromRow(row, prefix + "_issue_type_key", String.class));
+        entity.setIssueTypeWeight(converter.fromRow(row, prefix + "_issue_type_weight", Integer.class));
         entity.setIssueType(converter.fromRow(row, prefix + "_issue_type", String.class));
+        entity.setIsActive(converter.fromRow(row, prefix + "_is_active", Boolean.class));
         return entity;
     }
 }

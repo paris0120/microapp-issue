@@ -32,7 +32,7 @@ public class IssueDTO implements Serializable {
     private String issueContent;
 
     @NotNull(message = "must not be null")
-    private String issueType;
+    private String issueTypeKey;
 
     @NotNull(message = "must not be null")
     private String issueWorkflowStatus;
@@ -111,12 +111,12 @@ public class IssueDTO implements Serializable {
         this.issueContent = issueContent;
     }
 
-    public String getIssueType() {
-        return issueType;
+    public String getIssueTypeKey() {
+        return issueTypeKey;
     }
 
-    public void setIssueType(String issueType) {
-        this.issueType = issueType;
+    public void setIssueTypeKey(String issueTypeKey) {
+        this.issueTypeKey = issueTypeKey;
     }
 
     public String getIssueWorkflowStatus() {
@@ -215,7 +215,7 @@ public class IssueDTO implements Serializable {
             ", displayedUsername='" + getDisplayedUsername() + "'" +
             ", issueTitle='" + getIssueTitle() + "'" +
             ", issueContent='" + getIssueContent() + "'" +
-            ", issueType='" + getIssueType() + "'" +
+            ", issueTypeKey='" + getIssueTypeKey() + "'" +
             ", issueWorkflowStatus='" + getIssueWorkflowStatus() + "'" +
             ", issueWorkflowStatusKey='" + getIssueWorkflowStatusKey() + "'" +
             ", issuePriorityLevel=" + getIssuePriorityLevel() +

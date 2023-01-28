@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "issueTypeKey": "Issue Type Key",
+      "issueTypeWeight": "Issue Type Weight",
       "issueType": "Issue Type"
     }
   }

@@ -8,7 +8,7 @@ export interface IIssue {
   displayedUsername?: string | null;
   issueTitle?: string | null;
   issueContent?: string | null;
-  issueType?: string | null;
+  issueTypeKey?: string | null;
   issueWorkflowStatus?: string | null;
   issueWorkflowStatusKey?: string | null;
   issuePriorityLevel?: number | null;

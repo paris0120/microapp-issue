@@ -32,6 +32,10 @@ public class IssueType implements Serializable {
     @Column("issue_type")
     private String issueType;
 
+    @NotNull(message = "must not be null")
+    @Column("is_active")
+    private Boolean isActive;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -86,6 +90,19 @@ public class IssueType implements Serializable {
         this.issueType = issueType;
     }
 
+    public Boolean getIsActive() {
+        return this.isActive;
+    }
+
+    public IssueType isActive(Boolean isActive) {
+        this.setIsActive(isActive);
+        return this;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -113,6 +130,7 @@ public class IssueType implements Serializable {
             ", issueTypeKey='" + getIssueTypeKey() + "'" +
             ", issueTypeWeight=" + getIssueTypeWeight() +
             ", issueType='" + getIssueType() + "'" +
+            ", isActive='" + getIsActive() + "'" +
             "}";
     }
 }

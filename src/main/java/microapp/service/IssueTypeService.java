@@ -3,6 +3,7 @@ package microapp.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import microapp.domain.IssueType;
 import microapp.domain.MenuItem;
@@ -31,9 +32,9 @@ public class IssueTypeService {
         this.issueTypeRepository = issueTypeRepository;
     }
 
-    public List<IssueType> getIssueTypes() {
+    public Flux<IssueType> getIssueTypes() {
         if (issueTypes == null) refreshIssueType();
-        return issueTypes;
+        return Flux.fromIterable(issueTypes);
     }
 
     public void setIssueTypes(List<IssueType> issueTypes) {
@@ -41,9 +42,12 @@ public class IssueTypeService {
     }
 
     public void refreshIssueType() {
-        this.issueTypes = new ArrayList<>();
-        this.findAll().subscribe(issueTypes::add);
-        Collections.sort(issueTypes, (a, b) -> a.getIssueTypeWeight() - b.getIssueTypeWeight());
+        this.findAll()
+            .collectList()
+            .subscribe(types -> {
+                this.issueTypes = types;
+                Collections.sort(issueTypes, (a, b) -> a.getIssueTypeWeight() - b.getIssueTypeWeight());
+            });
     }
 
     /**

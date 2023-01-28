@@ -168,7 +168,18 @@ public class IssueTypeResource {
     @GetMapping("/issue-types")
     public Mono<List<IssueType>> getAllIssueTypes() {
         log.debug("REST request to get all IssueTypes");
-        return issueTypeService.findAll().collectList();
+        return issueTypeService.getIssueTypes().collectList();
+    }
+
+    /**
+     * {@code GET  /issue-types} : get all the issueTypes.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of issueTypes in body.
+     */
+    @GetMapping("/issue-types/refresh")
+    public Flux<IssueType> refreshIssueTypes() {
+        log.debug("REST request to get all IssueTypes");
+        return issueTypeService.getIssueTypes();
     }
 
     /**
@@ -178,7 +189,7 @@ public class IssueTypeResource {
     @GetMapping(value = "/issue-types", produces = MediaType.APPLICATION_NDJSON_VALUE)
     public Flux<IssueType> getAllIssueTypesAsStream() {
         log.debug("REST request to get all IssueTypes as a stream");
-        return issueTypeService.findAll();
+        return issueTypeService.getIssueTypes();
     }
 
     /**

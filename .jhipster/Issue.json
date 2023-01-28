@@ -1,6 +1,6 @@
 {
   "applications": ["issueServer"],
-  "changelogDate": "20230128043932",
+  "changelogDate": "20230128181430",
   "clientRootFolder": "issueServer",
   "databaseType": "sql",
   "dto": "mapstruct",
@@ -37,7 +37,7 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "issueType",
+      "fieldName": "issueTypeKey",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },

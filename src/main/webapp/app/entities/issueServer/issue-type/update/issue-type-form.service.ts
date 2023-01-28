@@ -14,13 +14,14 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type IssueTypeFormGroupInput = IIssueType | PartialWithRequiredKeyOf<NewIssueType>;
 
-type IssueTypeFormDefaults = Pick<NewIssueType, 'id'>;
+type IssueTypeFormDefaults = Pick<NewIssueType, 'id' | 'isActive'>;
 
 type IssueTypeFormGroupContent = {
   id: FormControl<IIssueType['id'] | NewIssueType['id']>;
   issueTypeKey: FormControl<IIssueType['issueTypeKey']>;
   issueTypeWeight: FormControl<IIssueType['issueTypeWeight']>;
   issueType: FormControl<IIssueType['issueType']>;
+  isActive: FormControl<IIssueType['isActive']>;
 };
 
 export type IssueTypeFormGroup = FormGroup<IssueTypeFormGroupContent>;
@@ -49,6 +50,9 @@ export class IssueTypeFormService {
       issueType: new FormControl(issueTypeRawValue.issueType, {
         validators: [Validators.required],
       }),
+      isActive: new FormControl(issueTypeRawValue.isActive, {
+        validators: [Validators.required],
+      }),
     });
   }
 
@@ -69,6 +73,7 @@ export class IssueTypeFormService {
   private getFormDefaults(): IssueTypeFormDefaults {
     return {
       id: null,
+      isActive: false,
     };
   }
 }

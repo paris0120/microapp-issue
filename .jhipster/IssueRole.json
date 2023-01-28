@@ -1,6 +1,6 @@
 {
   "applications": ["issueServer"],
-  "changelogDate": "20230128044532",
+  "changelogDate": "20230128182030",
   "clientRootFolder": "issueServer",
   "databaseType": "sql",
   "dto": "no",

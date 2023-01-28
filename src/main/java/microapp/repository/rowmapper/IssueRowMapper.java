@@ -33,7 +33,7 @@ public class IssueRowMapper implements BiFunction<Row, String, Issue> {
         entity.setDisplayedUsername(converter.fromRow(row, prefix + "_displayed_username", String.class));
         entity.setIssueTitle(converter.fromRow(row, prefix + "_issue_title", String.class));
         entity.setIssueContent(converter.fromRow(row, prefix + "_issue_content", String.class));
-        entity.setIssueType(converter.fromRow(row, prefix + "_issue_type", String.class));
+        entity.setIssueTypeKey(converter.fromRow(row, prefix + "_issue_type_key", String.class));
         entity.setIssueWorkflowStatus(converter.fromRow(row, prefix + "_issue_workflow_status", String.class));
         entity.setIssueWorkflowStatusKey(converter.fromRow(row, prefix + "_issue_workflow_status_key", String.class));
         entity.setIssuePriorityLevel(converter.fromRow(row, prefix + "_issue_priority_level", Integer.class));

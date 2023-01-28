@@ -14,6 +14,7 @@ import { Account } from '../../../../core/auth/account.model';
 import { AccountService } from '../../../../core/auth/account.service';
 import { FormControl } from '@angular/forms';
 import { IssueTypeService } from '../../issue-type/service/issue-type.service';
+import { IIssueType } from '../../issue-type/issue-type.model';
 
 @Component({
   selector: 'microapp-issue-update',
@@ -24,8 +25,9 @@ export class IssueUpdateComponent implements OnInit {
   issue: IIssue | null = null;
   account: Account | null = null;
   editForm: IssueFormGroup = this.issueFormService.createIssueFormGroup();
-  public issueType: string | null = null;
+  public issueType: string | null | undefined = null;
   issueTypeKey: string | null = null;
+  issueTypes: IIssueType[] = [];
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
@@ -38,12 +40,6 @@ export class IssueUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let issueType: string;
-    this.route.queryParams.subscribe(params => {
-      this.issueTypeKey = params.issueType;
-      this.editForm.controls['issueType'] = new FormControl(params.issueType);
-    });
-
     this.activatedRoute.data.subscribe(({ issue }) => {
       this.issue = issue;
       if (issue) {
@@ -51,12 +47,17 @@ export class IssueUpdateComponent implements OnInit {
       }
     });
     this.issueTypeService.query().subscribe(issueTypes => {
-      this.issueType = null;
       issueTypes.body?.map(issueType => {
-        if (issueType.issueTypeKey == this.issueTypeKey && issueType.issueType != undefined) this.issueType = issueType.issueType;
+        this.issueTypes.push(issueType);
+        if (this.editForm.controls.issueTypeKey.value == issueType.issueTypeKey) this.issueType = issueType.issueType;
       });
     });
     this.accountService.identity().subscribe(account => (this.account = account));
+  }
+
+  assignType(type: IIssueType): void {
+    this.issueType = type?.issueType;
+    this.editForm.controls.issueTypeKey = new FormControl(type?.issueTypeKey);
   }
 
   byteSize(base64String: string): string {

@@ -44,7 +44,7 @@ type IssueFormGroupContent = {
   displayedUsername: FormControl<IssueFormRawValue['displayedUsername']>;
   issueTitle: FormControl<IssueFormRawValue['issueTitle']>;
   issueContent: FormControl<IssueFormRawValue['issueContent']>;
-  issueType: FormControl<IssueFormRawValue['issueType']>;
+  issueTypeKey: FormControl<IssueFormRawValue['issueTypeKey']>;
   issueWorkflowStatus: FormControl<IssueFormRawValue['issueWorkflowStatus']>;
   issueWorkflowStatusKey: FormControl<IssueFormRawValue['issueWorkflowStatusKey']>;
   issuePriorityLevel: FormControl<IssueFormRawValue['issuePriorityLevel']>;
@@ -88,7 +88,7 @@ export class IssueFormService {
       issueContent: new FormControl(issueRawValue.issueContent, {
         validators: [Validators.required],
       }),
-      issueType: new FormControl(issueRawValue.issueType, {
+      issueTypeKey: new FormControl(issueRawValue.issueTypeKey, {
         validators: [Validators.required],
       }),
       issueWorkflowStatus: new FormControl(issueRawValue.issueWorkflowStatus, {

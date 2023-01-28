@@ -44,8 +44,8 @@ public class Issue implements Serializable {
     private String issueContent;
 
     @NotNull(message = "must not be null")
-    @Column("issue_type")
-    private String issueType;
+    @Column("issue_type_key")
+    private String issueTypeKey;
 
     @NotNull(message = "must not be null")
     @Column("issue_workflow_status")
@@ -169,17 +169,17 @@ public class Issue implements Serializable {
         this.issueContent = issueContent;
     }
 
-    public String getIssueType() {
-        return this.issueType;
+    public String getIssueTypeKey() {
+        return this.issueTypeKey;
     }
 
-    public Issue issueType(String issueType) {
-        this.setIssueType(issueType);
+    public Issue issueTypeKey(String issueTypeKey) {
+        this.setIssueTypeKey(issueTypeKey);
         return this;
     }
 
-    public void setIssueType(String issueType) {
-        this.issueType = issueType;
+    public void setIssueTypeKey(String issueTypeKey) {
+        this.issueTypeKey = issueTypeKey;
     }
 
     public String getIssueWorkflowStatus() {
@@ -316,7 +316,7 @@ public class Issue implements Serializable {
             ", displayedUsername='" + getDisplayedUsername() + "'" +
             ", issueTitle='" + getIssueTitle() + "'" +
             ", issueContent='" + getIssueContent() + "'" +
-            ", issueType='" + getIssueType() + "'" +
+            ", issueTypeKey='" + getIssueTypeKey() + "'" +
             ", issueWorkflowStatus='" + getIssueWorkflowStatus() + "'" +
             ", issueWorkflowStatusKey='" + getIssueWorkflowStatusKey() + "'" +
             ", issuePriorityLevel=" + getIssuePriorityLevel() +

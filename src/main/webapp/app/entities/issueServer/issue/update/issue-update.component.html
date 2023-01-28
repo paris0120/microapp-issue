@@ -1,7 +1,17 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form *ngIf="issueType; else invalidType" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="microapp-issue-heading" data-cy="IssueCreateUpdateHeading">{{ issueType }}f</h2>
+    <form
+      *ngIf="editForm.controls.issueTypeKey.value; else invalidType"
+      name="editForm"
+      role="form"
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="editForm"
+    >
+      <h2 id="microapp-issue-heading" data-cy="IssueCreateUpdateHeading">
+        <div *ngIf="editForm.controls.id.value; else editIssue">Update {{ issueType }}</div>
+        <ng-template #editIssue> New {{ issueType }} </ng-template>
+      </h2>
 
       <div>
         <microapp-alert-error></microapp-alert-error>
@@ -75,7 +85,11 @@
       </div>
     </form>
     <ng-template #invalidType>
-      <h2>Invalid issue type.</h2>
+      <h2>Create New Issue</h2>
+
+      <div *ngFor="let type of issueTypes">
+        <a [routerLink]="" (click)="assignType(type)">{{ type.issueType }}</a>
+      </div>
     </ng-template>
   </div>
 </div>

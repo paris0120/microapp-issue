@@ -1,11 +1,6 @@
-id;issue_type_key;issue_type_weight;issue_type
-1;Plastic Rustic;33295;networks
-2;Executive;83955;optical
-3;Consultant Plastic;82792;integrate
-4;Mouse explicit Account;9709;deposit Steel Park
-5;Face;93639;evolve
-6;Group Persevering;55783;Baby
-7;grey;93654;initiatives Coordinator
-8;Rubber Ethiopia;17825;Clothing
-9;Curve;38240;Towels JSON Pizza
-10;Solutions payment;23532;Frozen navigating Lek
+id;issue_type_key;issue_type_weight;issue_type;is_active
+1;ISSUE;1;Issue Report;true
+2;FEATURE;2;Feature Request;true
+3;SUPPORT;3;Support Question;true
+4;SECURITY;4;Security Vulnerability;true
+5;OTHER;5;Other;False

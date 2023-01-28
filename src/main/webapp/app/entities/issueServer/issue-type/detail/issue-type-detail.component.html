@@ -28,6 +28,10 @@
         <dd>
           <span>{{ issueType.issueType }}</span>
         </dd>
+        <dt><span microappTranslate="issueServerApp.issueServerIssueType.isActive">Is Active</span></dt>
+        <dd>
+          <span>{{ issueType.isActive }}</span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

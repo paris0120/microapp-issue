@@ -150,7 +150,7 @@ public class IssueService {
                             issueWorkflowStatusService.getIssueWorkflowStatus(existingIssue.getIssueWorkflowStatusKey())
                         );
                         existingIssue.setIssuePriorityLevel(issueDTO.getIssuePriorityLevel());
-                        existingIssue.setIssueType(issueDTO.getIssueType());
+                        existingIssue.setIssueTypeKey(issueDTO.getIssueTypeKey());
                         existingIssue.setIssueContent(issueDTO.getIssueContent());
                         existingIssue.setIssueTitle(issueDTO.getIssueTitle());
                         existingIssue.setModified(Instant.now());

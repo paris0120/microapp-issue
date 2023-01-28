@@ -54,8 +54,8 @@ class IssueResourceIT {
     private static final String DEFAULT_ISSUE_CONTENT = "AAAAAAAAAA";
     private static final String UPDATED_ISSUE_CONTENT = "BBBBBBBBBB";
 
-    private static final String DEFAULT_ISSUE_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_ISSUE_TYPE = "BBBBBBBBBB";
+    private static final String DEFAULT_ISSUE_TYPE_KEY = "AAAAAAAAAA";
+    private static final String UPDATED_ISSUE_TYPE_KEY = "BBBBBBBBBB";
 
     private static final String DEFAULT_ISSUE_WORKFLOW_STATUS = "AAAAAAAAAA";
     private static final String UPDATED_ISSUE_WORKFLOW_STATUS = "BBBBBBBBBB";
@@ -115,7 +115,7 @@ class IssueResourceIT {
             .displayedUsername(DEFAULT_DISPLAYED_USERNAME)
             .issueTitle(DEFAULT_ISSUE_TITLE)
             .issueContent(DEFAULT_ISSUE_CONTENT)
-            .issueType(DEFAULT_ISSUE_TYPE)
+            .issueTypeKey(DEFAULT_ISSUE_TYPE_KEY)
             .issueWorkflowStatus(DEFAULT_ISSUE_WORKFLOW_STATUS)
             .issueWorkflowStatusKey(DEFAULT_ISSUE_WORKFLOW_STATUS_KEY)
             .issuePriorityLevel(DEFAULT_ISSUE_PRIORITY_LEVEL)
@@ -141,7 +141,7 @@ class IssueResourceIT {
             .displayedUsername(UPDATED_DISPLAYED_USERNAME)
             .issueTitle(UPDATED_ISSUE_TITLE)
             .issueContent(UPDATED_ISSUE_CONTENT)
-            .issueType(UPDATED_ISSUE_TYPE)
+            .issueTypeKey(UPDATED_ISSUE_TYPE_KEY)
             .issueWorkflowStatus(UPDATED_ISSUE_WORKFLOW_STATUS)
             .issueWorkflowStatusKey(UPDATED_ISSUE_WORKFLOW_STATUS_KEY)
             .issuePriorityLevel(UPDATED_ISSUE_PRIORITY_LEVEL)
@@ -201,7 +201,7 @@ class IssueResourceIT {
         assertThat(testIssue.getDisplayedUsername()).isEqualTo(DEFAULT_DISPLAYED_USERNAME);
         assertThat(testIssue.getIssueTitle()).isEqualTo(DEFAULT_ISSUE_TITLE);
         assertThat(testIssue.getIssueContent()).isEqualTo(DEFAULT_ISSUE_CONTENT);
-        assertThat(testIssue.getIssueType()).isEqualTo(DEFAULT_ISSUE_TYPE);
+        assertThat(testIssue.getIssueTypeKey()).isEqualTo(DEFAULT_ISSUE_TYPE_KEY);
         assertThat(testIssue.getIssueWorkflowStatus()).isEqualTo(DEFAULT_ISSUE_WORKFLOW_STATUS);
         assertThat(testIssue.getIssueWorkflowStatusKey()).isEqualTo(DEFAULT_ISSUE_WORKFLOW_STATUS_KEY);
         assertThat(testIssue.getIssuePriorityLevel()).isEqualTo(DEFAULT_ISSUE_PRIORITY_LEVEL);
@@ -283,7 +283,7 @@ class IssueResourceIT {
     void checkIssueTypeIsRequired() throws Exception {
         int databaseSizeBeforeTest = issueRepository.findAll().collectList().block().size();
         // set the field null
-        issue.setIssueType(null);
+        issue.setIssueTypeKey(null);
 
         // Create the Issue, which fails.
         IssueDTO issueDTO = issueMapper.toDto(issue);
@@ -442,7 +442,7 @@ class IssueResourceIT {
             .jsonPath("$.[*].issueContent")
             .value(hasItem(DEFAULT_ISSUE_CONTENT.toString()))
             .jsonPath("$.[*].issueType")
-            .value(hasItem(DEFAULT_ISSUE_TYPE))
+            .value(hasItem(DEFAULT_ISSUE_TYPE_KEY))
             .jsonPath("$.[*].issueWorkflowStatus")
             .value(hasItem(DEFAULT_ISSUE_WORKFLOW_STATUS))
             .jsonPath("$.[*].issueWorkflowStatusKey")
@@ -492,7 +492,7 @@ class IssueResourceIT {
             .jsonPath("$.issueContent")
             .value(is(DEFAULT_ISSUE_CONTENT.toString()))
             .jsonPath("$.issueType")
-            .value(is(DEFAULT_ISSUE_TYPE))
+            .value(is(DEFAULT_ISSUE_TYPE_KEY))
             .jsonPath("$.issueWorkflowStatus")
             .value(is(DEFAULT_ISSUE_WORKFLOW_STATUS))
             .jsonPath("$.issueWorkflowStatusKey")
@@ -539,7 +539,7 @@ class IssueResourceIT {
             .displayedUsername(UPDATED_DISPLAYED_USERNAME)
             .issueTitle(UPDATED_ISSUE_TITLE)
             .issueContent(UPDATED_ISSUE_CONTENT)
-            .issueType(UPDATED_ISSUE_TYPE)
+            .issueTypeKey(UPDATED_ISSUE_TYPE_KEY)
             .issueWorkflowStatus(UPDATED_ISSUE_WORKFLOW_STATUS)
             .issueWorkflowStatusKey(UPDATED_ISSUE_WORKFLOW_STATUS_KEY)
             .issuePriorityLevel(UPDATED_ISSUE_PRIORITY_LEVEL)
@@ -569,7 +569,7 @@ class IssueResourceIT {
         assertThat(testIssue.getDisplayedUsername()).isEqualTo(UPDATED_DISPLAYED_USERNAME);
         assertThat(testIssue.getIssueTitle()).isEqualTo(UPDATED_ISSUE_TITLE);
         assertThat(testIssue.getIssueContent()).isEqualTo(UPDATED_ISSUE_CONTENT);
-        assertThat(testIssue.getIssueType()).isEqualTo(UPDATED_ISSUE_TYPE);
+        assertThat(testIssue.getIssueTypeKey()).isEqualTo(UPDATED_ISSUE_TYPE_KEY);
         assertThat(testIssue.getIssueWorkflowStatus()).isEqualTo(UPDATED_ISSUE_WORKFLOW_STATUS);
         assertThat(testIssue.getIssueWorkflowStatusKey()).isEqualTo(UPDATED_ISSUE_WORKFLOW_STATUS_KEY);
         assertThat(testIssue.getIssuePriorityLevel()).isEqualTo(UPDATED_ISSUE_PRIORITY_LEVEL);
@@ -691,7 +691,7 @@ class IssueResourceIT {
         assertThat(testIssue.getDisplayedUsername()).isEqualTo(DEFAULT_DISPLAYED_USERNAME);
         assertThat(testIssue.getIssueTitle()).isEqualTo(UPDATED_ISSUE_TITLE);
         assertThat(testIssue.getIssueContent()).isEqualTo(UPDATED_ISSUE_CONTENT);
-        assertThat(testIssue.getIssueType()).isEqualTo(DEFAULT_ISSUE_TYPE);
+        assertThat(testIssue.getIssueTypeKey()).isEqualTo(DEFAULT_ISSUE_TYPE_KEY);
         assertThat(testIssue.getIssueWorkflowStatus()).isEqualTo(UPDATED_ISSUE_WORKFLOW_STATUS);
         assertThat(testIssue.getIssueWorkflowStatusKey()).isEqualTo(UPDATED_ISSUE_WORKFLOW_STATUS_KEY);
         assertThat(testIssue.getIssuePriorityLevel()).isEqualTo(UPDATED_ISSUE_PRIORITY_LEVEL);
@@ -720,7 +720,7 @@ class IssueResourceIT {
             .displayedUsername(UPDATED_DISPLAYED_USERNAME)
             .issueTitle(UPDATED_ISSUE_TITLE)
             .issueContent(UPDATED_ISSUE_CONTENT)
-            .issueType(UPDATED_ISSUE_TYPE)
+            .issueTypeKey(UPDATED_ISSUE_TYPE_KEY)
             .issueWorkflowStatus(UPDATED_ISSUE_WORKFLOW_STATUS)
             .issueWorkflowStatusKey(UPDATED_ISSUE_WORKFLOW_STATUS_KEY)
             .issuePriorityLevel(UPDATED_ISSUE_PRIORITY_LEVEL)
@@ -749,7 +749,7 @@ class IssueResourceIT {
         assertThat(testIssue.getDisplayedUsername()).isEqualTo(UPDATED_DISPLAYED_USERNAME);
         assertThat(testIssue.getIssueTitle()).isEqualTo(UPDATED_ISSUE_TITLE);
         assertThat(testIssue.getIssueContent()).isEqualTo(UPDATED_ISSUE_CONTENT);
-        assertThat(testIssue.getIssueType()).isEqualTo(UPDATED_ISSUE_TYPE);
+        assertThat(testIssue.getIssueTypeKey()).isEqualTo(UPDATED_ISSUE_TYPE_KEY);
         assertThat(testIssue.getIssueWorkflowStatus()).isEqualTo(UPDATED_ISSUE_WORKFLOW_STATUS);
         assertThat(testIssue.getIssueWorkflowStatusKey()).isEqualTo(UPDATED_ISSUE_WORKFLOW_STATUS_KEY);
         assertThat(testIssue.getIssuePriorityLevel()).isEqualTo(UPDATED_ISSUE_PRIORITY_LEVEL);

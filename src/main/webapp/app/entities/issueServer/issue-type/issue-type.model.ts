@@ -3,6 +3,7 @@ export interface IIssueType {
   issueTypeKey?: string | null;
   issueTypeWeight?: number | null;
   issueType?: string | null;
+  isActive?: boolean | null;
 }
 
 export type NewIssueType = Omit<IIssueType, 'id'> & { id: null };
