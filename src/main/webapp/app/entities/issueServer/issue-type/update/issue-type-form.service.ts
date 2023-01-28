@@ -19,6 +19,7 @@ type IssueTypeFormDefaults = Pick<NewIssueType, 'id'>;
 type IssueTypeFormGroupContent = {
   id: FormControl<IIssueType['id'] | NewIssueType['id']>;
   issueTypeKey: FormControl<IIssueType['issueTypeKey']>;
+  issueTypeWeight: FormControl<IIssueType['issueTypeWeight']>;
   issueType: FormControl<IIssueType['issueType']>;
 };
 
@@ -40,6 +41,9 @@ export class IssueTypeFormService {
         }
       ),
       issueTypeKey: new FormControl(issueTypeRawValue.issueTypeKey, {
+        validators: [Validators.required],
+      }),
+      issueTypeWeight: new FormControl(issueTypeRawValue.issueTypeWeight, {
         validators: [Validators.required],
       }),
       issueType: new FormControl(issueTypeRawValue.issueType, {

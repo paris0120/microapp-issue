@@ -1,6 +1,6 @@
 {
   "applications": ["issueServer"],
-  "changelogDate": "20230127051045",
+  "changelogDate": "20230128044332",
   "clientRootFolder": "issueServer",
   "databaseType": "sql",
   "dto": "no",
@@ -10,6 +10,11 @@
     {
       "fieldName": "issueTypeKey",
       "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "issueTypeWeight",
+      "fieldType": "Integer",
       "fieldValidateRules": ["required", "unique"]
     },
     {

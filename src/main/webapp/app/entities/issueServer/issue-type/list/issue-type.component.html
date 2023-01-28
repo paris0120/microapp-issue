@@ -44,6 +44,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" microappSortBy="issueTypeWeight">
+            <div class="d-flex">
+              <span microappTranslate="issueServerApp.issueServerIssueType.issueTypeWeight">Issue Type Weight</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" microappSortBy="issueType">
             <div class="d-flex">
               <span microappTranslate="issueServerApp.issueServerIssueType.issueType">Issue Type</span>
@@ -59,6 +65,7 @@
             <a [routerLink]="['/issueserver/issue-type', issueType.id, 'view']">{{ issueType.id }}</a>
           </td>
           <td>{{ issueType.issueTypeKey }}</td>
+          <td>{{ issueType.issueTypeWeight }}</td>
           <td>{{ issueType.issueType }}</td>
           <td class="text-end">
             <div class="btn-group">

@@ -43,6 +43,41 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" microappTranslate="issueServerApp.issueServerIssueType.issueTypeWeight" for="field_issueTypeWeight"
+            >Issue Type Weight</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="issueTypeWeight"
+            id="field_issueTypeWeight"
+            data-cy="issueTypeWeight"
+            formControlName="issueTypeWeight"
+          />
+          <div
+            *ngIf="
+              editForm.get('issueTypeWeight')!.invalid &&
+              (editForm.get('issueTypeWeight')!.dirty || editForm.get('issueTypeWeight')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('issueTypeWeight')?.errors?.required"
+              microappTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('issueTypeWeight')?.errors?.number"
+              microappTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" microappTranslate="issueServerApp.issueServerIssueType.issueType" for="field_issueType"
             >Issue Type</label
           >

@@ -1,7 +1,11 @@
 package microapp.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import microapp.domain.IssueType;
+import microapp.domain.MenuItem;
 import microapp.repository.IssueTypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +21,29 @@ import reactor.core.publisher.Mono;
 @Transactional
 public class IssueTypeService {
 
+    private List<IssueType> issueTypes;
+
     private final Logger log = LoggerFactory.getLogger(IssueTypeService.class);
 
     private final IssueTypeRepository issueTypeRepository;
 
     public IssueTypeService(IssueTypeRepository issueTypeRepository) {
         this.issueTypeRepository = issueTypeRepository;
+    }
+
+    public List<IssueType> getIssueTypes() {
+        if (issueTypes == null) refreshIssueType();
+        return issueTypes;
+    }
+
+    public void setIssueTypes(List<IssueType> issueTypes) {
+        this.issueTypes = issueTypes;
+    }
+
+    public void refreshIssueType() {
+        this.issueTypes = new ArrayList<>();
+        this.findAll().subscribe(issueTypes::add);
+        Collections.sort(issueTypes, (a, b) -> a.getIssueTypeWeight() - b.getIssueTypeWeight());
     }
 
     /**

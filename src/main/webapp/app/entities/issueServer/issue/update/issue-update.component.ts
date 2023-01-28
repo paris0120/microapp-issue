@@ -13,6 +13,7 @@ import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 import { Account } from '../../../../core/auth/account.model';
 import { AccountService } from '../../../../core/auth/account.service';
 import { FormControl } from '@angular/forms';
+import { IssueTypeService } from '../../issue-type/service/issue-type.service';
 
 @Component({
   selector: 'microapp-issue-update',
@@ -23,7 +24,8 @@ export class IssueUpdateComponent implements OnInit {
   issue: IIssue | null = null;
   account: Account | null = null;
   editForm: IssueFormGroup = this.issueFormService.createIssueFormGroup();
-  issueType: string | null = null;
+  public issueType: string | null = null;
+  issueTypeKey: string | null = null;
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
@@ -31,12 +33,14 @@ export class IssueUpdateComponent implements OnInit {
     protected issueFormService: IssueFormService,
     protected activatedRoute: ActivatedRoute,
     protected accountService: AccountService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    protected issueTypeService: IssueTypeService
   ) {}
 
   ngOnInit(): void {
     let issueType: string;
     this.route.queryParams.subscribe(params => {
+      this.issueTypeKey = params.issueType;
       this.editForm.controls['issueType'] = new FormControl(params.issueType);
     });
 
@@ -45,6 +49,12 @@ export class IssueUpdateComponent implements OnInit {
       if (issue) {
         this.updateForm(issue);
       }
+    });
+    this.issueTypeService.query().subscribe(issueTypes => {
+      this.issueType = null;
+      issueTypes.body?.map(issueType => {
+        if (issueType.issueTypeKey == this.issueTypeKey && issueType.issueType != undefined) this.issueType = issueType.issueType;
+      });
     });
     this.accountService.identity().subscribe(account => (this.account = account));
   }

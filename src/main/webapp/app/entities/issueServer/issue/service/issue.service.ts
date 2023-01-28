@@ -8,6 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IIssue, NewIssue } from '../issue.model';
+import { IssueTypeService } from '../../issue-type/service/issue-type.service';
 
 export type PartialUpdateIssue = Partial<IIssue> & Pick<IIssue, 'id'>;
 

@@ -1,6 +1,7 @@
 export interface IIssueType {
   id: number;
   issueTypeKey?: string | null;
+  issueTypeWeight?: number | null;
   issueType?: string | null;
 }
 

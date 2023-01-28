@@ -1,69 +1,11 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="microapp-issue-heading"
-        data-cy="IssueCreateUpdateHeading"
-        microappTranslate="issueServerApp.issueServerIssue.home.createOrEditLabel"
-      >
-        Create or edit a Issue
-      </h2>
+    <form *ngIf="issueType; else invalidType" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="microapp-issue-heading" data-cy="IssueCreateUpdateHeading">{{ issueType }}f</h2>
 
       <div>
         <microapp-alert-error></microapp-alert-error>
-
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" microappTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
         <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.username" for="field_username">Username</label>
-          <input type="text" class="form-control" name="username" id="field_username" data-cy="username" formControlName="username" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.firstName" for="field_firstName">First Name</label>
-          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.lastName" for="field_lastName">Last Name</label>
-          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.displayedUsername" for="field_displayedUsername"
-            >Displayed Username</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="displayedUsername"
-            id="field_displayedUsername"
-            data-cy="displayedUsername"
-            formControlName="displayedUsername"
-          />
-          <div
-            *ngIf="
-              editForm.get('displayedUsername')!.invalid &&
-              (editForm.get('displayedUsername')!.dirty || editForm.get('displayedUsername')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('displayedUsername')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issueTitle" for="field_issueTitle"
-            >Issue Title</label
-          >
           <input
             pInputText
             type="text"
@@ -72,7 +14,9 @@
             id="field_issueTitle"
             data-cy="issueTitle"
             formControlName="issueTitle"
+            placeholder="Title"
           />
+
           <div *ngIf="editForm.get('issueTitle')!.invalid && (editForm.get('issueTitle')!.dirty || editForm.get('issueTitle')!.touched)">
             <small
               class="form-text text-danger"
@@ -90,13 +34,6 @@
               This field is required to be at least 2 characters.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issueContent" for="field_issueContent"
-            >Issue Content</label
-          >
-
           <p-editor
             class="form-control"
             name="issueContent"
@@ -104,15 +41,8 @@
             data-cy="issueContent"
             formControlName="issueContent"
             [style]="{ height: '320px' }"
+            placeholder="Leave a comment"
           ></p-editor>
-
-          <textarea
-            class="form-control"
-            name="issueContent"
-            id="field_issueContent"
-            data-cy="issueContent"
-            formControlName="issueContent"
-          ></textarea>
 
           <div
             *ngIf="editForm.get('issueContent')!.invalid && (editForm.get('issueContent')!.dirty || editForm.get('issueContent')!.touched)"
@@ -124,211 +54,6 @@
             >
               This field is required.
             </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issueType" for="field_issueType">Issue Type</label>
-          <input type="text" class="form-control" name="issueType" id="field_issueType" data-cy="issueType" formControlName="issueType" />
-          <div *ngIf="editForm.get('issueType')!.invalid && (editForm.get('issueType')!.dirty || editForm.get('issueType')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('issueType')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issueWorkflowStatus" for="field_issueWorkflowStatus"
-            >Issue Workflow Status</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="issueWorkflowStatus"
-            id="field_issueWorkflowStatus"
-            data-cy="issueWorkflowStatus"
-            formControlName="issueWorkflowStatus"
-          />
-          <div
-            *ngIf="
-              editForm.get('issueWorkflowStatus')!.invalid &&
-              (editForm.get('issueWorkflowStatus')!.dirty || editForm.get('issueWorkflowStatus')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('issueWorkflowStatus')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label
-            class="form-label"
-            microappTranslate="issueServerApp.issueServerIssue.issueWorkflowStatusKey"
-            for="field_issueWorkflowStatusKey"
-            >Issue Workflow Status Key</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="issueWorkflowStatusKey"
-            id="field_issueWorkflowStatusKey"
-            data-cy="issueWorkflowStatusKey"
-            formControlName="issueWorkflowStatusKey"
-          />
-          <div
-            *ngIf="
-              editForm.get('issueWorkflowStatusKey')!.invalid &&
-              (editForm.get('issueWorkflowStatusKey')!.dirty || editForm.get('issueWorkflowStatusKey')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('issueWorkflowStatusKey')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issuePriorityLevel" for="field_issuePriorityLevel"
-            >Issue Priority Level</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name="issuePriorityLevel"
-            id="field_issuePriorityLevel"
-            data-cy="issuePriorityLevel"
-            formControlName="issuePriorityLevel"
-          />
-          <div
-            *ngIf="
-              editForm.get('issuePriorityLevel')!.invalid &&
-              (editForm.get('issuePriorityLevel')!.dirty || editForm.get('issuePriorityLevel')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('issuePriorityLevel')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('issuePriorityLevel')?.errors?.number"
-              microappTranslate="entity.validation.number"
-            >
-              This field should be a number.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.issueUuid" for="field_issueUuid">Issue Uuid</label>
-          <input type="text" class="form-control" name="issueUuid" id="field_issueUuid" data-cy="issueUuid" formControlName="issueUuid" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.created" for="field_created">Created</label>
-          <div class="d-flex">
-            <input
-              id="field_created"
-              data-cy="created"
-              type="datetime-local"
-              class="form-control"
-              name="created"
-              formControlName="created"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-          <div *ngIf="editForm.get('created')!.invalid && (editForm.get('created')!.dirty || editForm.get('created')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('created')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('created')?.errors?.datetimelocal"
-              microappTranslate="entity.validation.datetimelocal"
-            >
-              This field should be a date and time.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.modified" for="field_modified">Modified</label>
-          <div class="d-flex">
-            <input
-              id="field_modified"
-              data-cy="modified"
-              type="datetime-local"
-              class="form-control"
-              name="modified"
-              formControlName="modified"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-          <div *ngIf="editForm.get('modified')!.invalid && (editForm.get('modified')!.dirty || editForm.get('modified')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('modified')?.errors?.required"
-              microappTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('modified')?.errors?.datetimelocal"
-              microappTranslate="entity.validation.datetimelocal"
-            >
-              This field should be a date and time.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.deleted" for="field_deleted">Deleted</label>
-          <div class="d-flex">
-            <input
-              id="field_deleted"
-              data-cy="deleted"
-              type="datetime-local"
-              class="form-control"
-              name="deleted"
-              formControlName="deleted"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" microappTranslate="issueServerApp.issueServerIssue.closed" for="field_closed">Closed</label>
-          <div class="d-flex">
-            <input
-              id="field_closed"
-              data-cy="closed"
-              type="datetime-local"
-              class="form-control"
-              name="closed"
-              formControlName="closed"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
           </div>
         </div>
       </div>
@@ -349,5 +74,8 @@
         </button>
       </div>
     </form>
+    <ng-template #invalidType>
+      <h2>Invalid issue type.</h2>
+    </ng-template>
   </div>
 </div>

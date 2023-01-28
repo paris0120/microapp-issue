@@ -3,24 +3,28 @@ import { IIssueType, NewIssueType } from './issue-type.model';
 export const sampleWithRequiredData: IIssueType = {
   id: 28998,
   issueTypeKey: 'bypassing white',
-  issueType: 'Specialist Bike payment',
+  issueTypeWeight: 75450,
+  issueType: 'client-server Tools Dynamic',
 };
 
 export const sampleWithPartialData: IIssueType = {
-  id: 3341,
-  issueTypeKey: 'online yellow',
-  issueType: 'Unit THX',
+  id: 45213,
+  issueTypeKey: 'Loan',
+  issueTypeWeight: 16354,
+  issueType: 'Metal',
 };
 
 export const sampleWithFullData: IIssueType = {
-  id: 20427,
-  issueTypeKey: 'Stand-alone invoice Rupee',
-  issueType: 'Keyboard data-warehouse static',
+  id: 68214,
+  issueTypeKey: 'invoice deposit Stand-alone',
+  issueTypeWeight: 63643,
+  issueType: 'Hat Keyboard data-warehouse',
 };
 
 export const sampleWithNewData: NewIssueType = {
-  issueTypeKey: 'Product neural',
-  issueType: 'Fantastic capacitor Account',
+  issueTypeKey: 'programming',
+  issueTypeWeight: 90660,
+  issueType: 'Cheese',
   id: null,
 };
 

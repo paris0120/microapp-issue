@@ -21,6 +21,7 @@ describe('IssueType Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             issueTypeKey: expect.any(Object),
+            issueTypeWeight: expect.any(Object),
             issueType: expect.any(Object),
           })
         );
@@ -33,6 +34,7 @@ describe('IssueType Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             issueTypeKey: expect.any(Object),
+            issueTypeWeight: expect.any(Object),
             issueType: expect.any(Object),
           })
         );

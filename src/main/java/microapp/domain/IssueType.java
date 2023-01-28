@@ -25,6 +25,10 @@ public class IssueType implements Serializable {
     private String issueTypeKey;
 
     @NotNull(message = "must not be null")
+    @Column("issue_type_weight")
+    private Integer issueTypeWeight;
+
+    @NotNull(message = "must not be null")
     @Column("issue_type")
     private String issueType;
 
@@ -54,6 +58,19 @@ public class IssueType implements Serializable {
 
     public void setIssueTypeKey(String issueTypeKey) {
         this.issueTypeKey = issueTypeKey;
+    }
+
+    public Integer getIssueTypeWeight() {
+        return this.issueTypeWeight;
+    }
+
+    public IssueType issueTypeWeight(Integer issueTypeWeight) {
+        this.setIssueTypeWeight(issueTypeWeight);
+        return this;
+    }
+
+    public void setIssueTypeWeight(Integer issueTypeWeight) {
+        this.issueTypeWeight = issueTypeWeight;
     }
 
     public String getIssueType() {
@@ -94,6 +111,7 @@ public class IssueType implements Serializable {
         return "IssueType{" +
             "id=" + getId() +
             ", issueTypeKey='" + getIssueTypeKey() + "'" +
+            ", issueTypeWeight=" + getIssueTypeWeight() +
             ", issueType='" + getIssueType() + "'" +
             "}";
     }

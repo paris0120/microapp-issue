@@ -1,6 +1,6 @@
 {
   "applications": ["issueServer"],
-  "changelogDate": "20230127050645",
+  "changelogDate": "20230128043932",
   "clientRootFolder": "issueServer",
   "databaseType": "sql",
   "dto": "mapstruct",

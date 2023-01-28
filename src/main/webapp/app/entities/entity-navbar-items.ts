@@ -1,8 +1,7 @@
 export const EntityNavbarItems = [
   {
-    name: 'Issue',
+    name: 'My Issue',
     route: 'issueserver/issue',
-    translationKey: 'global.menu.entities.issueServerIssue',
   },
   {
     name: 'IssueAssignment',
